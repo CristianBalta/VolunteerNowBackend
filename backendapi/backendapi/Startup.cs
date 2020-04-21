@@ -30,12 +30,18 @@ namespace backendapi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
+            services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+               
 
-            services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+            //ADD DATABASE
+            services.AddSingleton<IDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
+
+            // ADD SERVICES
             services.AddSingleton<BookService>();
+            services.AddSingleton<DonationsService>();
+           
             services.AddCors(options => options.AddPolicy("AllowCors", builder =>
             {
                 builder.WithOrigins("http:localhost:3000").WithMethods("GET", "PUT", "POST", "DELETE")

@@ -9,7 +9,7 @@ namespace backendapi.Services
     {
         private readonly IMongoCollection<Book> _books;
 
-        public BookService(IBookstoreDatabaseSettings settings)
+        public BookService(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);

@@ -5,16 +5,26 @@ using System.Threading.Tasks;
 
 namespace backendapi.Models
 {
-    public class BookstoreDatabaseSettings : IBookstoreDatabaseSettings
+    public class DatabaseSettings : IDatabaseSettings
     {
         public string BooksCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
+        public string UserCollectionName { get; set; }
+        public string DonationsCollectionName { get; set; }
+        public string NeedCollectionName { get; set; }
     }
 
-    public interface IBookstoreDatabaseSettings
+    public interface IDatabaseSettings
     {
         string BooksCollectionName { get; set; }
+
+        string UserCollectionName { get; set; }
+
+        string DonationsCollectionName { get; set; }
+
+        string NeedCollectionName { get; set; }
+
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
     }
